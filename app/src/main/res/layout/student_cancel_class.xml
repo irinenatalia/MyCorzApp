@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_reject_request"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/reject_bg"
+    tools:context="com.buboslabwork.mycorz.StudentCancelClass">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/logo_white"
+            android:background="@null"
+            android:scaleType="centerInside"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:text="Thank you, we will inform the mentor"/>
+        <Button
+            android:id="@+id/btnCancelClass"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_grey_background"
+            android:textAllCaps="false"
+            android:text="Done"
+            android:textColor="#137d76"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

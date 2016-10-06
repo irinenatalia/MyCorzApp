@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_category_class"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.buboslabwork.mycorz.CategoryClass">
+    <RelativeLayout
+        android:id="@+id/titleBarCategoryClass"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#4dc1b7"
+        android:layout_alignParentTop="true">
+        <ImageButton
+            android:id="@+id/btnBackCategoryClass"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/button_back_header"/>
+        <TextView
+            android:id="@+id/tvCategoryClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:text="Class List"/>
+    </RelativeLayout>
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBarCategoryClass"
+        android:id="@+id/map"
+        tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+</RelativeLayout>

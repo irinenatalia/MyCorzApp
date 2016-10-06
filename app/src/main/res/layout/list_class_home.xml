@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/listHomePicture"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/class_image"
+        android:scaleType="centerCrop"/>
+    <View
+        android:id="@+id/alphaViewClass"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#4dc1b7"
+        android:alpha="0.8"
+        android:layout_marginTop="125dp"/>
+    <TextView
+        android:id="@+id/listHomeClassDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:text="Date"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp"/>
+    <TextView
+        android:id="@+id/listHomeClassName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:text="Class Name"
+        android:textStyle="bold"
+        android:layout_marginTop="95dp"/>
+    <TextView
+        android:id="@+id/listHomeKategori"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="125dp"
+        android:gravity="center_vertical"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:text="Kategori"/>
+    <TextView
+        android:id="@+id/listHomeAgeLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="125dp"
+        android:layout_toRightOf="@+id/listHomeKategori"
+        android:gravity="center_vertical"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:text="Age Level"/>
+</RelativeLayout>

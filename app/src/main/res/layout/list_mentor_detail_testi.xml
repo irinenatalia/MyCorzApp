@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="#ffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/listMentorTestiName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18dp"
+            android:textColor="@color/colorTextGreyOld"
+            android:text="Mark Templeton"/>
+        <RatingBar
+            android:id="@+id/listMentorTestiRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:numStars="5"
+            android:stepSize="1.0"
+            android:rating="0.0"
+            android:clickable="false"
+            style="@style/foodRatingBar"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_quote"
+            android:background="@null"/>
+        <TextView
+            android:id="@+id/listMentorTestiReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="30dp"
+            fontPath="font/OpenSans-Light.ttf"
+            android:textSize="12dp"
+            android:textColor="@color/colorTextGreyOld"
+            android:text="Pak Budi adalah orang yang baik, ia bisa menunjukkan dedikasinya sebagai seorang guru"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="10dp"
+        android:background="#555555"/>
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_class_location"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="com.buboslabwork.mycorz.ClassLocation">
+    <RelativeLayout
+        android:id="@+id/titleBarClassLocation"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/colorGreenNormal"
+        android:layout_alignParentTop="true">
+        <ImageButton
+            android:id="@+id/btnBackClassLocation"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/button_back_header"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:text="Workshop"/>
+    </RelativeLayout>
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBarClassLocation"
+        android:id="@+id/map"
+        tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/titleBarClassLocation"
+        android:paddingLeft="10dp"
+        android:ems="10"
+        android:hint="Please enter your place"
+        android:textColorHint="@color/colorTextGreyItalic"
+        android:textColorHighlight="@color/colorTextGreyNormal"
+        android:textSize="15sp"
+        android:background="@drawable/edittext_bg">
+        <requestFocus />
+    </AutoCompleteTextView>
+    <Button
+        android:id="@+id/classLocationSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/colorTextGreyNormal"
+        android:text="Set Location"
+        android:background="@drawable/rounded_tosca_fill"/>
+</RelativeLayout>

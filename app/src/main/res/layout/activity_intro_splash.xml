@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_intro_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.buboslabwork.mycorz.IntroSplash">
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        custom:pager_animation="Default"
+        custom:indicator_visibility="invisible"
+        android:layout_height="match_parent"/>
+    <Button
+        android:id="@+id/enterToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF"
+        android:textColor="#0cb1a4"
+        android:text="Continue"/>
+</RelativeLayout>

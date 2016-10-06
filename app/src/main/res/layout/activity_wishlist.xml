@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="com.buboslabwork.mycorz.Wishlist">
+    <RelativeLayout
+        android:id="@+id/titleBarWishlist"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/colorGreenNormal"
+        android:layout_alignParentTop="true">
+        <ImageButton
+            android:id="@+id/btnBackWishlist"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/button_back_header"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:text="View Wish List"/>
+
+    </RelativeLayout>
+    <TextView
+        android:layout_below="@+id/titleBarWishlist"
+        android:id="@+id/warningWishlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/colorTextGreyNormal"/>
+    <ProgressBar
+        android:id="@+id/progressBarWishlist"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/progress_bar_tosca"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/wishlistSwipeRefreshLayout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/titleBarWishlist">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listWishlist"></ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>
