@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/titleBarPaymentATM"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/colorGreenNormal">
+        <ImageButton
+            android:id="@+id/btnBackPaymentATM"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/button_back_header"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:text="Chat"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <ListView
+            android:divider="@null"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/viewInbox" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:id="@+id/imageView8"
+        android:background="@color/colorGreenNormal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etMessage"
+            android:background="@null"
+            android:hint="Tulis pesan"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:layout_marginRight="3dp"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:id="@+id/btnSend"
+            android:text="Kirim"
+            android:background="@color/colorGreenNormal"
+            android:gravity="center" />
+    </LinearLayout>
+</LinearLayout>
