@@ -96,8 +96,6 @@ public class MentorList extends AppCompatActivity implements OnMapReadyCallback 
         longitude = new ArrayList<String>();
 
         // Parse JSON data to Listview
-        extractJSON();
-        showData();
 
         slidingLayout = (SlidingUpPanelLayout)findViewById(R.id.sliding_layout);
 
@@ -244,5 +242,9 @@ public class MentorList extends AppCompatActivity implements OnMapReadyCallback 
                 .build();
 
         mGoogleApiClient.connect();
+
+
+        extractJSON();
+        showData();
     }
 }
