@@ -60,9 +60,9 @@ public class Search extends AppCompatActivity {
         spinner.setVisibility(View.GONE);
         category=(AutoCompleteTextView)findViewById(R.id.searchAutocomplete);
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,arrayCategory);
-        adapter.setNotifyOnChange(true);
+        //adapter.setNotifyOnChange(true);
         category.setAdapter(adapter);
-        category.setThreshold(3);
+       // category.setThreshold(3);
 
         final TextWatcher textChecker = new TextWatcher() {
             public void afterTextChanged(Editable s) {}
@@ -104,6 +104,7 @@ public class Search extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        arrayCategory.clear();
                         Log.d("searchresult", "json: "+response);
                         if(response.equalsIgnoreCase("") || response.equalsIgnoreCase("false")){
                             spinner.setVisibility(View.GONE);
@@ -129,7 +130,9 @@ public class Search extends AppCompatActivity {
                                 }
                             }
                             //notify adapter to update on autocompletetextview
-                            adapter.notifyDataSetChanged();
+                            adapter = new ArrayAdapter<String>(Search.this,android.R.layout.simple_dropdown_item_1line,arrayCategory);
+                            //adapter.setNotifyOnChange(true);
+                            category.setAdapter(adapter);
 
                         }
                     }

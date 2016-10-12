@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -16,7 +19,13 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Transformers.BaseTransformer;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class IntroSplash extends AppCompatActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
     private SliderLayout mDemoSlider;
@@ -24,6 +33,7 @@ public class IntroSplash extends AppCompatActivity implements BaseSliderView.OnS
     private int previousPosition = 0;
     Button nextbtn;
 
+    List<String> listImage = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,30 +41,71 @@ public class IntroSplash extends AppCompatActivity implements BaseSliderView.OnS
 
         nextbtn = (Button)findViewById(R.id.enterToLogin);
         mDemoSlider = (SliderLayout)findViewById(R.id.slider);
+        nextbtn.setVisibility(View.GONE);
+        AndroidNetworking.get("http://vidcom.click/admin/android/slider.php")
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                           JSONArray result = response.getJSONArray("result");
+                            for(int i = 0; i < result.length(); i++){
+                                JSONObject c = result.getJSONObject(i);
+                                listImage.add(c.getString("images"));
+                                DefaultSliderView textSliderView = new DefaultSliderView(IntroSplash.this);
+                                // initialize a SliderLayout
+                                Log.v("url : ", "http://vidcom.click/" + c.getString("images"));
+                                textSliderView
+                                        .image("http://vidcom.click/" + c.getString("images"))
+                                        .setScaleType(BaseSliderView.ScaleType.Fit)
+                                        .setOnSliderClickListener(IntroSplash.this);
 
-        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Intro1", R.drawable.splashintro);
+                                textSliderView.bundle(new Bundle());
 
-        for(String name : file_maps.keySet()){
-            DefaultSliderView textSliderView = new DefaultSliderView(this);
-            // initialize a SliderLayout
-            textSliderView
-                    .image(file_maps.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
+                                mDemoSlider.addSlider(textSliderView);
+                            }
+                        }catch (JSONException e){
 
-            //add your extra information
-            textSliderView.bundle(new Bundle());
-            /*textSliderView.getBundle()
-                    .putString("extra",name);*/
+                        }
 
-            mDemoSlider.addSlider(textSliderView);
-        }
+                        if(listImage.size() == 1){
+                            nextbtn.setVisibility(View.VISIBLE);
+                        }else{
+                            nextbtn.setVisibility(View.GONE);
+                        }
+                    }
 
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
         mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.stopAutoCycle();
+        mDemoSlider.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.v("position", position + "");
+                Log.v("listImage.size()", listImage.size() + "");
+                if(position == listImage.size() - 1){
+                    nextbtn.setVisibility(View.VISIBLE);
+                }else{
+                    nextbtn.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         //mDemoSlider.setDuration(4000);
         mDemoSlider.addOnPageChangeListener(this);
 

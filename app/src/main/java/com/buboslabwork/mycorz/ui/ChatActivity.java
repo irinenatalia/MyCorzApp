@@ -72,9 +72,39 @@ public class ChatActivity extends AppCompatActivity {
                 ChatActivity.this.finish();
             }
         });
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessage();
+            }
+        });
     }
 
+    void sendMessage(){
+        User user= PrefUtils.getCurrentUser(this);
+        AndroidNetworking.post("http://vidcom.click/admin/android/sendmessage.php")
+                .addBodyParameter("dari", user.email)
+                .addBodyParameter("tujuan", tujuan)
+                .addBodyParameter("pesan", etMessage.getText().toString())
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        loadData();
+                        etMessage.setText("");
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
+
+
+    }
     void loadData(){
+        listChat.clear();
         User user= PrefUtils.getCurrentUser(this);
         AndroidNetworking.post("http://vidcom.click/admin/android/listmessage.php")
             .addBodyParameter("saya",user.email)
@@ -115,4 +145,6 @@ public class ChatActivity extends AppCompatActivity {
                 }
             });
     }
+
+
 }
