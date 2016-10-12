@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SummaryStudentComplete extends AppCompatActivity {
     TextView category,className,classDescription,ageLevel,skillLevel,date,time,venue,location,mentor,total;
+    TextView completedByMentor,completedByStudent;
     String sID,sDate,sTime,sAgeLevel,sLocation,sLocationDetail,sClassName;
     String alstudent,alcategory,alclassDescription,alskillLevel,almentor,altotal;
     public JSONArray result = null;
@@ -34,6 +37,7 @@ public class SummaryStudentComplete extends AppCompatActivity {
     private static final String NOTIF_URL = "http://vidcom.click/admin/android/viewSummaryComplete.php?id=";
     User user;
     String email;
+    public ProgressBar spinner;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -55,6 +59,8 @@ public class SummaryStudentComplete extends AppCompatActivity {
             email = user.email;
         }
 
+        spinner=(ProgressBar)findViewById(R.id.progressBarSummarySC);
+        spinner.setVisibility(View.GONE);
         category = (TextView)findViewById(R.id.summarySCCategory);
         className = (TextView)findViewById(R.id.summarySCClassName);
         classDescription = (TextView)findViewById(R.id.summarySCClassDesc);
@@ -66,6 +72,8 @@ public class SummaryStudentComplete extends AppCompatActivity {
         location = (TextView)findViewById(R.id.summarySCLocation);
         mentor = (TextView)findViewById(R.id.summarySCMentor);
         total = (TextView)findViewById(R.id.summarySCTotal);
+        completedByMentor = (TextView)findViewById(R.id.summarySCCompleteDate1);
+        completedByStudent = (TextView)findViewById(R.id.summarySCCompleteDate2);
 
         //GET CONTENT FROM PREVIOUS INTENT
         Bundle extras = getIntent().getExtras();
@@ -152,7 +160,7 @@ public class SummaryStudentComplete extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(SummaryStudentComplete.this, "Loading...",null,true,true);
+                spinner.setVisibility(View.GONE);
             }
 
             @Override
@@ -184,7 +192,8 @@ public class SummaryStudentComplete extends AppCompatActivity {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
+                spinner.setVisibility(View.GONE);
+                Log.v("summarystudentresult", ""+s);
                 myJSONString = s;
                 if(s.equalsIgnoreCase("") || s.equalsIgnoreCase("false")){
                     Toast.makeText(SummaryStudentComplete.this, "Connection problem while loading summary detail", Toast.LENGTH_LONG).show();
@@ -216,15 +225,17 @@ public class SummaryStudentComplete extends AppCompatActivity {
 
                 alstudent = jsonObject.getString("student_username");
                 altotal = jsonObject.getString("payment");
-                almentor = jsonObject.getString("mentor_username");
+                almentor = jsonObject.getString("mentor_name");
                 alclassDescription = jsonObject.getString("class_description");
                 alcategory = jsonObject.getString("category");
                 alskillLevel = jsonObject.getString("skill_level");
             }
             category.setText(alcategory);
-            total.setText(altotal);
+            Integer costPlainInt = Integer.parseInt(altotal);
+            total.setText("Rp " + String.format("%,d", costPlainInt).replace(',','.'));
             classDescription.setText(alclassDescription);
             skillLevel.setText(alskillLevel);
+            mentor.setText(almentor);
 
         } catch (JSONException e) {
             e.printStackTrace();

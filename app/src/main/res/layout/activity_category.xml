@@ -42,13 +42,6 @@
             android:background="@null"
             android:src="@drawable/icon_seacrh_header"/>
     </RelativeLayout>
-    <ProgressBar
-        android:id="@+id/progressBarCategory"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/progress_bar_tosca"/>
     <TextView
         android:id="@+id/warningCategory"
         android:layout_width="wrap_content"
@@ -72,10 +65,21 @@
             android:id="@+id/categoryListview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:scrollbars="none"
+            android:groupIndicator="@null"
+            android:divider="#ffffff"
+            android:dividerHeight="10dp"
+            android:childDivider="#00ffffff">
 
         </ExpandableListView>
     </android.support.v4.widget.SwipeRefreshLayout>
+    <ProgressBar
+        android:id="@+id/progressBarCategory"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/progress_bar_tosca"/>
     <LinearLayout
         android:id="@+id/bottom_menu_category"
         android:layout_width="match_parent"
@@ -131,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="NOTIFICATION"/>
             <TextView
@@ -139,6 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="HISTORY"/>
             <TextView
@@ -147,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="PROFILE"/>
             <TextView
@@ -155,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="SETTING"/>
         </LinearLayout>

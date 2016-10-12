@@ -123,12 +123,17 @@ public class JoinClass extends AppCompatActivity {
             tvTime.setText(time);
             tvLocation.setText(location);
             tvLocation2.setText(location);
+            editLocationDetail.setText(locationDetail);
             tvAge.setText(ageLevel);
             tvSkill.setText(skillLevel);
-            tvWorkshopCost.setText("Rp " + cost);
-            tvPrivateCost.setText("Rp " + privateCost);
-            tvAdditionalYesCost.setText("(Rp " + additionalCost + ")");
-            tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+
+            Integer costPlainInt = Integer.parseInt(cost);
+            Integer privateCostPlainInt = Integer.parseInt(privateCost);
+            Integer additionalCostPlainInt = Integer.parseInt(additionalCost);
+            tvWorkshopCost.setText("Rp " + String.format("%,d", costPlainInt).replace(',','.'));
+            tvPrivateCost.setText("Rp " + String.format("%,d", privateCostPlainInt).replace(',','.'));
+            tvAdditionalYesCost.setText("(Rp " + String.format("%,d", additionalCostPlainInt).replace(',','.') + ")");
+            tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
         }
 
         workshopIcon.setOnClickListener(new View.OnClickListener() {
@@ -137,14 +142,17 @@ public class JoinClass extends AppCompatActivity {
                 privateIcon.setText("○");
                 typeFlag = 0;
                 tvLocation2.setText(location);
+                editLocationDetail.setText(locationDetail);
+                tvLocation2.setClickable(false);
+                editLocationDetail.setClickable(false);
 
                 if(additionalFlag == 1){
                     totalPayment = Integer.parseInt(cost) + Integer.parseInt(additionalCost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
                 else{
                     totalPayment = Integer.parseInt(cost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
             }
         });
@@ -154,14 +162,17 @@ public class JoinClass extends AppCompatActivity {
                 privateIcon.setText("○");
                 typeFlag = 0;
                 tvLocation2.setText(location);
+                editLocationDetail.setText(locationDetail);
+                tvLocation2.setClickable(false);
+                editLocationDetail.setClickable(false);
 
                 if(additionalFlag == 1){
                     totalPayment = Integer.parseInt(cost) + Integer.parseInt(additionalCost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
                 else{
                     totalPayment = Integer.parseInt(cost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
             }
         });
@@ -172,14 +183,17 @@ public class JoinClass extends AppCompatActivity {
                     workshopIcon.setText("○");
                     typeFlag = 1;
                     tvLocation2.setText(""); //empty the location field
+                    editLocationDetail.setText("");
+                    tvLocation2.setClickable(true);
+                    editLocationDetail.setClickable(true);
 
                     if(additionalFlag == 1){
                         totalPayment = Integer.parseInt(privateCost) + Integer.parseInt(additionalCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                     else{
                         totalPayment = Integer.parseInt(privateCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                 }
             }
@@ -191,14 +205,17 @@ public class JoinClass extends AppCompatActivity {
                     workshopIcon.setText("○");
                     typeFlag = 1;
                     tvLocation2.setText("");
+                    editLocationDetail.setText("");
+                    tvLocation2.setClickable(true);
+                    editLocationDetail.setClickable(true);
 
                     if(additionalFlag == 1){
                         totalPayment = Integer.parseInt(privateCost) + Integer.parseInt(additionalCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                     else{
                         totalPayment = Integer.parseInt(privateCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                 }
             }
@@ -212,11 +229,11 @@ public class JoinClass extends AppCompatActivity {
 
                     if(typeFlag == 1){ //private class
                         totalPayment = Integer.parseInt(privateCost) + Integer.parseInt(additionalCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                     else{
                         totalPayment = Integer.parseInt(cost) + Integer.parseInt(additionalCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                 }
             }
@@ -230,11 +247,11 @@ public class JoinClass extends AppCompatActivity {
 
                     if(typeFlag == 1){ //private class
                         totalPayment = Integer.parseInt(privateCost) + Integer.parseInt(additionalCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                     else{
                         totalPayment = Integer.parseInt(cost) + Integer.parseInt(additionalCost);
-                        tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                        tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                     }
                 }
             }
@@ -247,11 +264,11 @@ public class JoinClass extends AppCompatActivity {
 
                 if(typeFlag == 1){ //private class
                     totalPayment = Integer.parseInt(privateCost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
                 else{
                     totalPayment = Integer.parseInt(cost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
             }
         });
@@ -263,11 +280,11 @@ public class JoinClass extends AppCompatActivity {
 
                 if(typeFlag == 1){ //private class
                     totalPayment = Integer.parseInt(privateCost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
                 else{
                     totalPayment = Integer.parseInt(cost);
-                    tvTotalPayment.setText("(Rp " + String.valueOf(totalPayment) + ")");
+                    tvTotalPayment.setText("(Rp " + String.format("%,d", totalPayment).replace(',','.') + ")");
                 }
             }
         });

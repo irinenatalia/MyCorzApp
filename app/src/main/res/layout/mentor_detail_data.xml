@@ -47,7 +47,7 @@
             android:layout_marginTop="10dp"
             app:civ_border_color="#ffffff"
             app:civ_border_width="2dp"
-            android:src="@drawable/jokowi"/>
+            android:src="@drawable/icon_default_avatar_upload"/>
         <TextView
             android:id="@+id/nameMentorDetailData"
             android:layout_width="match_parent"
@@ -85,11 +85,13 @@
         android:id="@+id/lvMentorDetailTesti"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="@null"
         android:layout_below="@+id/mentorProfileTesti"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:layout_above="@+id/footerMentorDetailData"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:scrollbars="none">
     </ListView>
 
     <!-- footer -->

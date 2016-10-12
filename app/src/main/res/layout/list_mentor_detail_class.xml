@@ -29,7 +29,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/icon_location"/>
+                android:src="@drawable/icon_class_size"/>
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
@@ -50,12 +50,12 @@
                 android:textColor="#555555"
                 />
             <TextView
-                android:id="@+id/listMDCLocation"
+                android:id="@+id/listMDCClassSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="11sp"
-                android:text="Jakarta Pusat"
+                android:text="1-5 people"
                 android:textColor="#555555"/>
             <TextView
                 android:id="@+id/listMDCSkill"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="11sp"
-                android:text="12 May 2016"
+                android:text="Rp 300.000"
                 android:textColor="#555555"/>
         </LinearLayout>
         <!-- below View keeps occupying remaining space so that the button could align right -->
@@ -143,6 +143,27 @@
         </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/icon_location"/>
+        <TextView
+            android:id="@+id/listMDCLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textSize="11sp"
+            android:text="Jakarta Pusat"
+            android:textColor="#555555"/>
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.3dp"

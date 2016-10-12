@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="28sp"
+            android:textColor="#ffffff"
             android:textAlignment="center"
             android:text="Happy studying"/>
         <Button
@@ -43,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
+            android:textColor="#ffffff"
             android:textAlignment="center"
             android:text="By clicking this button, I have understand and agree of the term and condition of this course"/>
     </LinearLayout>

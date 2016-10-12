@@ -5,14 +5,23 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,21 +41,51 @@ public class Search extends AppCompatActivity {
     public String myJSONString;
     private static final String JSON_ARRAY ="result";
     private static final String CATEGORY_URL = "http://vidcom.click/admin/android/viewCategoryMain.php";
+    private static final String KEYWORD_URL = "http://vidcom.click/admin/android/searchCategory.php?keyword=";
     private static final String DETAIL_URL = "http://vidcom.click/admin/android/viewDetailCategory.php?category=";
 
+    ArrayAdapter<String> adapter;
     AutoCompleteTextView category;
     String categorySearchResult;
     ImageButton search;
-
+    ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //DISPLAYING CATEGORY AUTOCOMPLETE
         arrayCategory = new ArrayList<String>();
-        getCategoryJSON(CATEGORY_URL);
+        spinner = (ProgressBar)findViewById(R.id.progressBarSearch);
+        spinner.setVisibility(View.GONE);
+        category=(AutoCompleteTextView)findViewById(R.id.searchAutocomplete);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,arrayCategory);
+        adapter.setNotifyOnChange(true);
+        category.setAdapter(adapter);
+        category.setThreshold(3);
+
+        final TextWatcher textChecker = new TextWatcher() {
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if(category.getText().toString().length() > 2) {
+                    Log.v("searchresult", "" + category.getText().toString());
+                    spinner.setVisibility(View.VISIBLE);
+                    fetchClass();
+                }
+            }
+        };
+
+        //SET LISTENER EVERYTIME USER TYPE
+        category.addTextChangedListener(textChecker);
+
+        //THIS IS NOT USED, AS WE ALREADY USE TEXTWATCHER TO FETCH JSON DATA
+        //THIS IS ONLY FOR DISPLAYING THE FIRST TIME - USE IT AS A TEST ONLY
+        //DISPLAYING CATEGORY AUTOCOMPLETE
+        //getCategoryJSON(CATEGORY_URL);
 
         search = (ImageButton)findViewById(R.id.iconSearchSearch);
 
@@ -57,7 +96,67 @@ public class Search extends AppCompatActivity {
             }
         });
     }
+
+    //FETCH CATEGORY RESULT BY TEXTWATCHER
+    private void fetchClass(){
+        // Creating volley request obj
+        StringRequest movieReq = new StringRequest(KEYWORD_URL+category.getText().toString(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("searchresult", "json: "+response);
+                        if(response.equalsIgnoreCase("") || response.equalsIgnoreCase("false")){
+                            spinner.setVisibility(View.GONE);
+                        }
+                        else {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                result = jsonObject.getJSONArray(JSON_ARRAY);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            spinner.setVisibility(View.GONE);
+
+                            //Log.d("searchresult", "length: "+String.valueOf(result.length()));
+                            // Parsing json
+                            for (int i = 0; i < result.length(); i++) {
+                                try {
+                                    JSONObject jsonObject = result.getJSONObject(i);
+                                    arrayCategory.add(jsonObject.getString("subcategory"));
+                                    Log.v("searchresult","sub: "+arrayCategory.get(i));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            //notify adapter to update on autocompletetextview
+                            adapter.notifyDataSetChanged();
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse errorRes = error.networkResponse;
+                //Log.e("VolleyError",errorRes.toString());
+                if(errorRes != null && errorRes.data != null){
+                    //Log.e("VolleyError",errorRes.toString());
+                }
+
+                spinner.setVisibility(View.GONE);
+            }
+        });
+
+        // Adding request to request queue
+        VolleyAppController.getInstance().addToRequestQueue(movieReq);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        spinner.setVisibility(View.GONE);
+    }
+
     //GET CATEGORY LIST VIA ASYNC
+    //THIS IS NOT USED - FETCHING DATA ALREADY DONE WITH VOLLEY
     private void getCategoryJSON(String url) {
         class getCategoryJSON extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
@@ -98,7 +197,6 @@ public class Search extends AppCompatActivity {
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-
                 myJSONString = s;
                 if(s.equalsIgnoreCase("") || s.equalsIgnoreCase("false")){
                     TextView warning = (TextView)findViewById(R.id.warningReviewRequest);
@@ -114,6 +212,7 @@ public class Search extends AppCompatActivity {
         getCategoryJSON gj = new getCategoryJSON();
         gj.execute(url);
     }
+    //THIS IS NOT USED - FETCHING DATA ALREADY DONE WITH VOLLEY
     private void extractJSON(String s){
         try {
             JSONObject jsonObject = new JSONObject(s);
@@ -123,17 +222,18 @@ public class Search extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    //THIS IS NOT USED - FETCHING DATA ALREADY DONE WITH VOLLEY
     private void showData(){
         try {
             for(int i=0; i<result.length(); i++) {
                 JSONObject jsonObject = result.getJSONObject(i);
                 arrayCategory.add(jsonObject.getString("category"));
             }
-            category=(AutoCompleteTextView)findViewById(R.id.searchAutocomplete);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,arrayCategory);
+            //category=(AutoCompleteTextView)findViewById(R.id.searchAutocomplete);
+            //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,arrayCategory);
 
-            category.setAdapter(adapter);
+            //category.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
 
             search.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {

@@ -32,7 +32,7 @@ public class SummaryMentorComplete extends AppCompatActivity {
     public String myJSONString;
     private static final String JSON_ARRAY ="result";
 
-    private static final String NOTIF_URL = "http://vidcom.click/admin/android/viewSummaryCompleted.php?id=";
+    private static final String NOTIF_URL = "http://vidcom.click/admin/android/viewSummaryComplete.php?id=";
     User user;
     String email;
 
@@ -226,7 +226,8 @@ public class SummaryMentorComplete extends AppCompatActivity {
                 alskillLevel = jsonObject.getString("skill_level");
             }
             category.setText(alcategory);
-            total.setText(altotal);
+            Integer costPlainInt = Integer.parseInt(altotal);
+            total.setText("Rp " + String.format("%,d", costPlainInt).replace(',','.'));
             classDescription.setText(alclassDescription);
             skillLevel.setText(alskillLevel);
 

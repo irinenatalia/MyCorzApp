@@ -13,6 +13,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -73,6 +75,8 @@ public class Login extends AppCompatActivity {
 
     EditText email,password;
     String sFacebookID,sEmail,sPassword,sCompleteName,sProfile,sBirthDate,sAddress,sSummary;
+    ImageView viewPassword;
+    Boolean isChecked = false;
 
     public JSONArray result = null;
     public String myJSONString;
@@ -106,6 +110,7 @@ public class Login extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.loginEmail);
         password = (EditText) findViewById(R.id.loginPassword);
+        viewPassword = (ImageView) findViewById(R.id.loginViewPassword);
 
         fbImageButton = (ImageButton)findViewById(R.id.fbImageButton);
         loginButton = (LoginButton) findViewById(R.id.login_facebook);
@@ -157,6 +162,23 @@ public class Login extends AppCompatActivity {
         fbImageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 loginButton.performClick();
+            }
+        });
+
+        viewPassword.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("isPasswordChecked",isChecked.toString());
+                if (isChecked == false) {
+                    // show password
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    viewPassword.setImageResource(R.drawable.eye);
+                    isChecked = true;
+                } else {
+                    // hide password
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    viewPassword.setImageResource(R.drawable.hide_eye);
+                    isChecked = false;
+                }
             }
         });
 
@@ -498,6 +520,7 @@ public class Login extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(), Home.class);
                 startActivity(i);
+                finish();
             }
             else if(sProfile.length() > 0){
                 Log.v("loginresult",sProfile);
@@ -556,6 +579,7 @@ public class Login extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(), Home.class);
                 startActivity(i);
+                finish();
             }
         }
 

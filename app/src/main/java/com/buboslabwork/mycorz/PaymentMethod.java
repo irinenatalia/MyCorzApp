@@ -68,8 +68,10 @@ public class PaymentMethod extends AppCompatActivity {
             tvLocation.setText(locationSeparated[0]);
             tvAge.setText(Age);
             tvSkill.setText(Skill);
-            tvCost.setText("Rp" + Cost);
-            tvCostTotal.setText("Rp" + Cost);
+
+            Integer costPlainInt = Integer.parseInt(Cost);
+            tvCost.setText("Rp" + String.format("%,d", costPlainInt).replace(',','.'));
+            tvCostTotal.setText("Rp" + String.format("%,d", costPlainInt).replace(',','.'));
             if(Type.equalsIgnoreCase("1"))
                 tvType.setText("Private");
             else

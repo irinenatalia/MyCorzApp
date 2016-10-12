@@ -25,24 +25,41 @@
             android:layout_marginTop="30dp"
             android:paddingLeft="15dp"
             android:background="@drawable/edittext_bg"
+            android:maxLines="1"
             android:textSize="15sp"
             android:textColor="#000000"
             android:textColorHint="@color/colorGreenOld"
             android:textColorHighlight="#ffffff"
             android:hint="Email"/>
-        <EditText
-            android:id="@+id/loginPassword"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="15dp"
-            android:inputType="textPassword"
-            android:background="@drawable/edittext_bg"
-            android:textColor="#000000"
-            android:textColorHint="@color/colorGreenOld"
-            android:textSize="15sp"
-            android:textColorHighlight="#ffffff"
-            android:hint="Password"/>
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/loginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#000000"
+                android:textColorHint="@color/colorGreenOld"
+                android:textSize="15sp"
+                android:textColorHighlight="#ffffff"
+                android:hint="Password"/>
+            <ImageView
+                android:id="@+id/loginViewPassword"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/eye"
+                android:adjustViewBounds="true"/>
+        </RelativeLayout>
+
         <ImageButton
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
@@ -109,6 +126,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#ffffff"
                 android:text="Don't have an account? "/>
             <TextView
                 android:id="@+id/btnRegister"
@@ -116,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:onClick="register"
+                android:textColor="#ffffff"
                 android:textAppearance="@style/TextAppearance.FontBold"
                 android:text="Register"/>
         </LinearLayout>

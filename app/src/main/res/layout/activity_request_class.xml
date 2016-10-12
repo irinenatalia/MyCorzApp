@@ -54,6 +54,8 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listRequestClass"></ListView>
+            android:id="@+id/listRequestClass"
+            android:scrollbars="none"
+            android:divider="@null"></ListView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

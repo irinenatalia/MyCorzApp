@@ -4,47 +4,68 @@
     android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/listHomePicture"
-        android:layout_marginTop="15dp"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/class_image"
-        android:scaleType="centerCrop"/>
+        android:layout_height="170dp"
+        android:layout_marginTop="-10dp">
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/listLandingPagePicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:src="@drawable/class_image"
+            android:scaleType="centerCrop"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="44dp"
+            android:background="@drawable/gradient_background"/>
+        <ImageView
+            android:src="@drawable/rounded_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
     <View
         android:id="@+id/alphaViewClass"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#4dc1b7"
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/rounded_half_light_tosca_fill"
         android:alpha="0.8"
-        android:layout_marginTop="125dp"/>
+        android:layout_marginTop="116dp"/>
     <TextView
         android:id="@+id/listHomeClassDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="15dp"
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:text="Date"
         android:textStyle="bold"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="70dp"/>
     <TextView
         android:id="@+id/listHomeClassName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="15dp"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:text="Class Name"
         android:textStyle="bold"
-        android:layout_marginTop="95dp"/>
+        android:layout_marginTop="85dp"/>
     <TextView
         android:id="@+id/listHomeKategori"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="110dp"
         android:gravity="center_vertical"
         android:textColor="#ffffff"
         android:textSize="17sp"
@@ -54,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="110dp"
         android:layout_toRightOf="@+id/listHomeKategori"
         android:gravity="center_vertical"
         android:textColor="#ffffff"

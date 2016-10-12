@@ -10,7 +10,7 @@
         android:layout_height="75dp"
         android:background="@color/colorGreenNormal">
         <ImageButton
-            android:id="@+id/btnBackPaymentATM"
+            android:id="@+id/btnBackChat"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"

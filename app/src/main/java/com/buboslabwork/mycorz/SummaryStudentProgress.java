@@ -40,6 +40,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class SummaryStudentProgress extends AppCompatActivity {
     TextView category,className,classDescription,ageLevel,skillLevel,date,time,venue,location,mentor,total;
     ImageButton payment,cancel,completed; //Action Textview
+    ImageButton btnBack;
     String sID,sDate,sTime,sAgeLevel,sLocation,sLocationDetail,sClassName,sPaymentTime;
     String alstudent,alcategory,alclassDescription,alskillLevel,almentor,alstatus,altotal,altype;
     String alstudentName,almentorName,alstudentProfile,almentorProfile;
@@ -88,6 +89,7 @@ public class SummaryStudentProgress extends AppCompatActivity {
         location = (TextView)findViewById(R.id.summarySPLocation);
         mentor = (TextView)findViewById(R.id.summarySPMentor);
         total = (TextView)findViewById(R.id.summarySPTotal);
+        btnBack = (ImageButton)findViewById(R.id.btnBackSummarySP);
         //ACTION TEXTVIEW
         payment = (ImageButton)findViewById(R.id.summarySPPayment);
         cancel = (ImageButton)findViewById(R.id.summarySPCancel);
@@ -125,6 +127,11 @@ public class SummaryStudentProgress extends AppCompatActivity {
 
         getSummaryJSON(NOTIF_URL+sID);
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SummaryStudentProgress.this.finish();
+            }
+        });
         ImageButton btnHistory = (ImageButton)findViewById(R.id.btnSPHistory);
         btnHistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -200,16 +207,12 @@ public class SummaryStudentProgress extends AppCompatActivity {
                     i.putExtras(mBundle);
                     startActivity(i);
                 }
-                else{
-                    payment.setImageResource(R.drawable.button_history_payment_grey);
-                    payment.setClickable(false);
-                    payment.setEnabled(false);
-                }
+
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new AlertDialog.Builder(getApplicationContext())
+                new AlertDialog.Builder(SummaryStudentProgress.this)
                         .setTitle("Cancel class")
                         .setMessage("Are you sure you want to cancel this class? (Max 2 days before class started)")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -276,7 +279,6 @@ public class SummaryStudentProgress extends AppCompatActivity {
                     while((json = bufferedReader.readLine())!= null){
                         sb.append(json+"\n");
                     }
-
                     return sb.toString().trim();
 
                 }catch(Exception e){
@@ -315,7 +317,7 @@ public class SummaryStudentProgress extends AppCompatActivity {
 
     private void showData(){
         try {
-            //productList = new ArrayList<HashMap<String, String>>();
+            spinner.setVisibility(View.GONE);
             for(int i=0; i<result.length(); i++) {
                 JSONObject jsonObject = result.getJSONObject(i);
 
@@ -333,15 +335,21 @@ public class SummaryStudentProgress extends AppCompatActivity {
                 almentorProfile = jsonObject.getString("mentor_profile");
             }
             category.setText(alcategory);
-            total.setText(altotal);
+            Integer costPlainInt = Integer.parseInt(altotal);
+            total.setText("Rp " + String.format("%,d", costPlainInt).replace(',','.'));
             classDescription.setText(alclassDescription);
             skillLevel.setText(alskillLevel);
             mentor.setText(almentorName);
 
             if(sPaymentTime.equalsIgnoreCase("") || sPaymentTime.isEmpty()) {
+                payment.setImageResource(R.drawable.button_history_payment);
+                payment.setEnabled(true);
+                payment.setClickable(true);
+            }
+            else{
                 payment.setImageResource(R.drawable.button_history_payment_grey);
-                payment.setEnabled(false);
                 payment.setClickable(false);
+                payment.setEnabled(false);
             }
             //disable button complete if class status is pending
             if(alstatus.equalsIgnoreCase("PENDING")){

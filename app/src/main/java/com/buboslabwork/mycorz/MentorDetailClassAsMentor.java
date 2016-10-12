@@ -373,6 +373,7 @@ public class MentorDetailClassAsMentor extends AppCompatActivity {
                 holder.tvTime = (TextView) convertView.findViewById(R.id.listMDAsMentorTime);
                 holder.tvLocation = (TextView) convertView.findViewById(R.id.listMDAsMentorLocation);
                 holder.tvCost = (TextView) convertView.findViewById(R.id.listMDAsMentorCost);
+                holder.tvClassSize = (TextView) convertView.findViewById(R.id.listMDAsMentorClassSize);
 
                 holder.tvName.setText(name.get(position));
                 holder.tvAgeLevel.setText(ageLevel.get(position));
@@ -380,7 +381,11 @@ public class MentorDetailClassAsMentor extends AppCompatActivity {
                 holder.tvDate.setText(date.get(position));
                 holder.tvTime.setText(time.get(position));
                 holder.tvLocation.setText(location.get(position));
-                holder.tvCost.setText(cost.get(position));
+
+                Integer costPlainInt = Integer.parseInt(cost.get(position));
+                String costPlain = String.format("%,d", costPlainInt).replace(',', '.');
+                holder.tvCost.setText("Rp "+costPlain+" / Class");
+                holder.tvClassSize.setText(classSize.get(position));
 
                 holder.join = (ImageButton) convertView.findViewById(R.id.mentorDetailAsMentorUpdate);
                 convertView.setTag(holder);
@@ -419,7 +424,7 @@ public class MentorDetailClassAsMentor extends AppCompatActivity {
     }
     public class Holder
     {
-        TextView tvName,tvAgeLevel,tvSkillLevel,tvDate,tvTime,tvLocation,tvCost;
+        TextView tvName,tvAgeLevel,tvSkillLevel,tvDate,tvTime,tvLocation,tvCost,tvClassSize;
         ImageButton join;
     }
 }

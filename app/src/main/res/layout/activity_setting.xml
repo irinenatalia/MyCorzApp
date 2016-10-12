@@ -204,6 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="NOTIFICATION"/>
             <TextView
@@ -212,6 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="HISTORY"/>
             <TextView
@@ -220,6 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="PROFILE"/>
             <TextView
@@ -228,6 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="SETTING"/>
         </LinearLayout>

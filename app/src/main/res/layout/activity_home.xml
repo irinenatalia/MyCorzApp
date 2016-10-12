@@ -44,7 +44,7 @@
                 android:id="@+id/pictureHome"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/jokowi"/>
+                android:src="@drawable/icon_default_avatar_upload"/>
         </LinearLayout>
 
     </RelativeLayout>
@@ -68,15 +68,17 @@
         android:id="@+id/homeSwipeRefreshLayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:layout_below="@+id/titleBarHome"
         android:layout_above="@+id/btnToMainMenu">
         <ListView
             android:id="@+id/home_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginTop="10dp"
+            android:scrollbars="none"
+            android:divider="@null"/>
     </android.support.v4.widget.SwipeRefreshLayout>
     <Button
         android:id="@+id/btnToMainMenu"
@@ -88,6 +90,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
         android:textAllCaps="false"
+        android:textColor="#ffffff"
         android:text="Main Menu"
         android:background="@drawable/rounded_tosca_fill"/>
 
@@ -146,6 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="NOTIFICATION"/>
             <TextView
@@ -154,6 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="HISTORY"/>
             <TextView
@@ -162,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="PROFILE"/>
             <TextView
@@ -170,6 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="SETTING"/>
         </LinearLayout>

@@ -25,17 +25,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:textColor="#ffffff"
             android:textSize="22sp"
             android:text="Summary"/>
 
     </RelativeLayout>
-    <ProgressBar
-        android:id="@+id/progressBarSummaryMP"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/progress_bar_tosca"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +38,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="15dp"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -402,7 +397,13 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
+    <ProgressBar
+        android:id="@+id/progressBarSummaryMP"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/progress_bar_tosca"/>
     <LinearLayout
         android:id="@+id/bottomMenuMP"
         android:layout_width="match_parent"
@@ -459,6 +460,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textSize="10sp"
+                android:textColor="#ffffff"
                 android:text="NOTIFICATION"/>
             <TextView
                 android:id="@+id/tvMPHistory"
@@ -466,6 +468,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="HISTORY"/>
             <TextView
@@ -474,6 +477,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="PROFILE"/>
             <TextView
@@ -482,6 +486,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="SETTING"/>
         </LinearLayout>

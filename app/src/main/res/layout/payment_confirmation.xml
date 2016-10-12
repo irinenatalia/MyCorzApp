@@ -34,7 +34,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/titleBarPaymentConfirm">
+        android:layout_below="@+id/titleBarPaymentConfirm"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -255,11 +256,12 @@
                 android:focusableInTouchMode="false"
                 android:clickable="true"
                 android:textColor="@color/colorTextGreyNormal"
-                android:textColorHint="#1ba298"/>
+                android:textColorHint="@color/colorTextGreyNormal"/>
             <LinearLayout
                 android:id="@+id/paymentConfirmHiddenView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:visibility="gone"
                 android:orientation="vertical">
                 <TextView

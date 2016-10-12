@@ -10,7 +10,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:descendantFocusability="blocksDescendants"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
@@ -200,19 +199,38 @@
                     android:textColor="@color/colorTextGreyNormal"/>
             </LinearLayout>
         </LinearLayout>
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="-10dp"
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_wishlist_action"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/layout_wishlist"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btn_request_message"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
             android:scaleType="centerInside"
-            android:layout_gravity="right|center_vertical"
-            android:src="@drawable/icon_save"
-            android:background="@null"/>
+            android:src="@drawable/button_message"
+            android:adjustViewBounds="true"/>
+        <ImageButton
+            android:id="@+id/btn_request_setclass"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/button_set_class"
+            android:adjustViewBounds="true"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/layout_wishlist"
+        android:layout_below="@+id/layout_wishlist_action"
         android:layout_marginTop="20dp"
         android:background="#555555"/>
 </RelativeLayout>

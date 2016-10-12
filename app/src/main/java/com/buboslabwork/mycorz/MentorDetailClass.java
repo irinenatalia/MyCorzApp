@@ -305,6 +305,7 @@ public class MentorDetailClass extends AppCompatActivity {
                 byte[] byteImage = baos.toByteArray();
 
                 bitmapProfileEncoded = Base64.encodeToString(byteImage, Base64.DEFAULT);
+                Log.v("mentordetailprofile",bitmapProfileEncoded);
                 displayProfile.setImageBitmap(b);
             }
         }
@@ -369,6 +370,7 @@ public class MentorDetailClass extends AppCompatActivity {
                 holder.tvTime = (TextView) convertView.findViewById(R.id.listMDCTime);
                 holder.tvLocation = (TextView) convertView.findViewById(R.id.listMDCLocation);
                 holder.tvCost = (TextView) convertView.findViewById(R.id.listMDCCost);
+                holder.tvClassSize = (TextView) convertView.findViewById(R.id.listMDCClassSize);
 
                 holder.tvName.setText(name.get(position));
                 holder.tvAgeLevel.setText(ageLevel.get(position));
@@ -376,7 +378,11 @@ public class MentorDetailClass extends AppCompatActivity {
                 holder.tvDate.setText(date.get(position));
                 holder.tvTime.setText(time.get(position));
                 holder.tvLocation.setText(location.get(position));
-                holder.tvCost.setText(cost.get(position));
+
+                Integer costPlainInt = Integer.parseInt(cost.get(position));
+                String costPlain = String.format("%,d", costPlainInt).replace(',', '.');
+                holder.tvCost.setText("Rp "+costPlain+" / Class");
+                holder.tvClassSize.setText(classSize.get(position));
 
                 holder.join = (ImageButton) convertView.findViewById(R.id.listMDCJoin);
                 convertView.setTag(holder);
@@ -411,7 +417,7 @@ public class MentorDetailClass extends AppCompatActivity {
     }
     public class Holder
     {
-        TextView tvName,tvAgeLevel,tvSkillLevel,tvDate,tvTime,tvLocation,tvCost;
+        TextView tvName,tvAgeLevel,tvSkillLevel,tvDate,tvTime,tvLocation,tvCost,tvClassSize;
         ImageButton join;
     }
 }

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_update_certificate"
+    android:id="@+id/activity_add_certificate"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -14,7 +14,7 @@
         android:background="@color/colorGreenNormal"
         android:layout_alignParentTop="true">
         <ImageButton
-            android:id="@+id/btnBackCert"
+            android:id="@+id/btnBackUpdateCert"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
@@ -25,131 +25,43 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:textColor="#ffffff"
             android:textSize="20sp"
-            android:text="Update Skill And Certificates"/>
+            android:text="Add Skill And Certificates"/>
 
     </RelativeLayout>
     <ListView
+        android:id="@+id/lvUpdateCert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleBarUpdateCert"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="0dp"
-        android:layout_above="@+id/footerCertAction"
-        android:id="@+id/listCertificate"></ListView>
+        android:layout_above="@+id/layoutUpdateCertSave"
+        android:divider="@null"></ListView>
     <LinearLayout
-        android:id="@+id/footerCertAction"
+        android:id="@+id/layoutUpdateCertSave"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:layout_above="@+id/bottom_menu_update_cert">
-        <ImageButton
-            android:id="@+id/btnAddCert"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:scaleType="centerInside"
-            android:background="@null"
-            android:src="@drawable/button_add_skill"/>
-        <ImageButton
-            android:id="@+id/btnSaveCert"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:scaleType="centerInside"
-            android:background="@null"
-            android:src="@drawable/button_save"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bottom_menu_update_cert"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
         android:gravity="center"
-        android:background="@color/colorGreenNormal"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:orientation="horizontal">
-            <ImageButton
-                android:id="@+id/btnUpdateCertNotification"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_menu_open_order"
-                android:background="@null"/>
-            <ImageButton
-                android:id="@+id/btnUpdateCertHistory"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_menu_history"
-                android:background="@null"/>
-            <ImageButton
-                android:id="@+id/btnUpdateCertProfile"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/profile"
-                android:background="@null"/>
-            <ImageButton
-                android:id="@+id/btnUpdateCertSetting"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_menu_setting"
-                android:background="@null"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btnUpdateCertSave"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:src="@drawable/icon_save"/>
+        <Button
+            android:id="@+id/btnUpdateCertSave2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="10sp"
-                android:text="NOTIFICATION"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="10sp"
-                android:text="HISTORY"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="10sp"
-                android:text="PROFILE"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="10sp"
-                android:text="SETTING"/>
-        </LinearLayout>
+            android:layout_marginLeft="-20dp"
+            android:text="Save"
+            android:background="@null"
+            android:textColor="#137d76"/>
     </LinearLayout>
 </RelativeLayout>

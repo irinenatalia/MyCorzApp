@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import com.buboslabwork.mycorz.MainActivity;
 import com.buboslabwork.mycorz.PrefUtils;
 import com.buboslabwork.mycorz.Profile;
 import com.buboslabwork.mycorz.R;
+import com.buboslabwork.mycorz.UpdateCertificate;
 import com.buboslabwork.mycorz.User;
 import com.buboslabwork.mycorz.adapter.InboxAdapter;
 import com.buboslabwork.mycorz.model.InboxModel;
@@ -33,9 +36,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Admin on 10/7/2016.
- */
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -66,6 +66,12 @@ public class ChatActivity extends AppCompatActivity {
 
         loadData();
 
+        ImageButton btnBack = (ImageButton)findViewById(R.id.btnBackChat);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ChatActivity.this.finish();
+            }
+        });
     }
 
     void loadData(){

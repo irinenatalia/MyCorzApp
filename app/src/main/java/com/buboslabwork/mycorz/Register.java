@@ -10,12 +10,15 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -51,6 +54,8 @@ public class Register extends AppCompatActivity {
 
     EditText name,email,password;
     String sName, sEmail, sPassword, sFacebookID, sCompleteName, sProfile;
+    ImageView viewPassword;
+    Boolean isChecked = false;
     User user;
     String loginMethod = "";
 
@@ -78,6 +83,7 @@ public class Register extends AppCompatActivity {
         name = (EditText)findViewById(R.id.registerName);
         email = (EditText)findViewById(R.id.registerEmail);
         password = (EditText)findViewById(R.id.registerPass);
+        viewPassword = (ImageView) findViewById(R.id.registerViewPassword);
 
         sName = name.getText().toString();
         sEmail = email.getText().toString();
@@ -131,6 +137,22 @@ public class Register extends AppCompatActivity {
         fbImageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 loginButton.performClick();
+            }
+        });
+
+        viewPassword.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (isChecked == false) {
+                    // show password
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    viewPassword.setImageResource(R.drawable.eye);
+                    isChecked = true;
+                } else {
+                    // hide password
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    viewPassword.setImageResource(R.drawable.hide_eye);
+                    isChecked = false;
+                }
             }
         });
 
@@ -305,8 +327,18 @@ public class Register extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(Register.this, "You have successfully registered to MyCorz", Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(getApplicationContext(), Login.class);
+
+                    user = new User();
+                    user.email = email.getText().toString();
+                    user.password = password.getText().toString();
+                    user.name = name.getText().toString();
+                    user.picture = sProfile;
+                    user.method = "mycorz";
+                    PrefUtils.setCurrentUser(user,Register.this);
+
+                    Intent i = new Intent(getApplicationContext(), Home.class);
                     startActivity(i);
+                    finish();
                 }
             }else if (result.equalsIgnoreCase("false")){
                 // If username and password does not match display a error message
@@ -317,6 +349,7 @@ public class Register extends AppCompatActivity {
                 if(loginMethod.equalsIgnoreCase("facebook")){
                     Intent i = new Intent(getApplicationContext(), Home.class);
                     startActivity(i);
+                    finish();
                 }
                 else
                     Toast.makeText(Register.this, "Your email is a registered MyCorz account, please register with another email address", Toast.LENGTH_LONG).show();

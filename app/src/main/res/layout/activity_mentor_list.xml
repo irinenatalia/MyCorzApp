@@ -24,10 +24,12 @@
             android:id="@+id/mentorListToolbarTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="55dp"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:text="Category"/>
         <ImageButton
             android:id="@+id/btnSearchMentorList"
@@ -120,7 +122,9 @@
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:scrollbars="none"
+                    android:divider="@null"/>
             </LinearLayout>
         </LinearLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>

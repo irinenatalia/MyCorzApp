@@ -34,10 +34,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleBarMentor"
-        android:layout_above="@+id/footerMentor">
+        android:layout_above="@+id/footerMentor"
+        >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
             <LinearLayout
                 android:id="@+id/iconMentor1"
                 android:layout_width="match_parent"
@@ -265,6 +267,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="NOTIFICATION"/>
             <TextView
@@ -273,6 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="HISTORY"/>
             <TextView
@@ -281,6 +285,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="PROFILE"/>
             <TextView
@@ -289,6 +294,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="SETTING"/>
         </LinearLayout>

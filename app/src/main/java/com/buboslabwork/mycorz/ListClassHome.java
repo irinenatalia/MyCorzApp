@@ -66,8 +66,7 @@ public class ListClassHome extends BaseAdapter{
         holder.tvAgeLevel=(TextView) rowView.findViewById(R.id.listHomeAgeLevel);
         if (imageLoader == null)
             imageLoader = VolleyAppController.getInstance().getImageLoader();
-        NetworkImageView thumbnail = (NetworkImageView) rowView
-                .findViewById(R.id.listHomePicture);
+        NetworkImageView thumbnail = (NetworkImageView)rowView.findViewById(R.id.listLandingPagePicture);
 
         thumbnail.setImageUrl(picture.get(position), imageLoader);
         holder.tvClassDate.setText(classDate.get(position));

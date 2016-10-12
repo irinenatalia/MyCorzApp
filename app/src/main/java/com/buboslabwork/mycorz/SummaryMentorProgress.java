@@ -111,8 +111,7 @@ public class SummaryMentorProgress extends AppCompatActivity {
         ImageButton imgBtnBack = (ImageButton)findViewById(R.id.btnBackSummaryMP);
         imgBtnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), History.class);
-                startActivity(i);
+                SummaryMentorProgress.this.finish();
             }
         });
         ImageButton btnHistory = (ImageButton)findViewById(R.id.btnMPHistory);
@@ -285,7 +284,8 @@ public class SummaryMentorProgress extends AppCompatActivity {
                 almentorProfile = jsonObject.getString("mentor_profile");
             }
             category.setText(alcategory);
-            total.setText(altotal);
+            Integer costPlainInt = Integer.parseInt(altotal);
+            total.setText("Rp " + String.format("%,d", costPlainInt).replace(',','.'));
             classDescription.setText(alclassDescription);
             skillLevel.setText(alskillLevel);
             mentor.setText(alstudentName);

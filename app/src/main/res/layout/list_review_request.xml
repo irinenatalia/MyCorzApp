@@ -31,7 +31,7 @@
                 android:id="@+id/listReviewPicture"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/jokowi"/>
+                android:src="@drawable/icon_default_avatar_upload"/>
             <TextView
                 android:id="@+id/listReviewName"
                 android:layout_width="match_parent"

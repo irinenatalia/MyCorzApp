@@ -266,13 +266,13 @@ public class PaymentConfirmation extends AppCompatActivity {
                     sJumlahDibayar = sJumlahDibayar.replace(",", "");
 
                     if(TextUtils.isEmpty(keterangan.getText().toString())){
-                        sKeterangan = "null";
+                        sKeterangan = "";
                     }
                     else
                         sKeterangan = keterangan.getText().toString();
 
                     if(TextUtils.isEmpty(cabang.getText().toString())){
-                        sCabang = "null";
+                        sCabang = "";
                     }
                     else
                         sCabang = cabang.getText().toString();

@@ -2,12 +2,16 @@ package com.buboslabwork.mycorz;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -18,6 +22,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.buboslabwork.mycorz.ui.ChatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -157,24 +162,13 @@ public class RequestClass extends AppCompatActivity {
 
                             lvRequestClass = (ListView) findViewById(R.id.listRequestClass);
                             lvRequestClass.setAdapter(new ListRequestClass(RequestClass.this, title, category, ageLevel, skillLevel, classSize, date, time, requestby));
-                            lvRequestClass.setItemsCanFocus(true);
+                            //lvRequestClass.setItemsCanFocus(true);
                             // Click event for single list row
                             lvRequestClass.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view,
                                                         int position, long id) {
-                                    Intent i = new Intent(getApplicationContext(), SetClass.class);
-                                    Bundle mBundle = new Bundle();
-                                    mBundle.putString("age_level", ageLevel.get(position));
-                                    mBundle.putString("category", category.get(position));
-                                    mBundle.putString("title", title.get(position));
-                                    mBundle.putString("skill_level", skillLevel.get(position));
-                                    mBundle.putString("date", date.get(position));
-                                    mBundle.putString("time", time.get(position));
-                                    mBundle.putString("class_size", classSize.get(position));
-                                    mBundle.putString("pageSource", "RequestClass");
-                                    i.putExtras(mBundle);
-                                    startActivity(i);
+
                                 }
                             });
                         }
@@ -201,5 +195,103 @@ public class RequestClass extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         spinner.setVisibility(View.GONE);
+    }
+
+    public class ListRequestClass extends BaseAdapter {
+        ArrayList<String> title,requestby,category,ageLevel,skillLevel,classSize,date,time;
+        Context context;
+        private LayoutInflater inflater=null;
+        public ListRequestClass(Context activity, ArrayList<String> title, ArrayList<String> category, ArrayList<String> ageLevel, ArrayList<String> skillLevel, ArrayList<String> classSize, ArrayList<String> date, ArrayList<String> time, ArrayList<String> requestby) {
+            // TODO Auto-generated constructor stub
+            this.title = title;
+            this.requestby = requestby;
+            this.category = category;
+            this.ageLevel = ageLevel;
+            this.skillLevel = skillLevel;
+            this.classSize = classSize;
+            this.date = date;
+            this.time = time;
+            context=activity;
+        }
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return category.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            // TODO Auto-generated method stub
+            return position;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            // TODO Auto-generated method stub
+            return position;
+        }
+
+        public class Holder
+        {
+            TextView tvRequestBy,tvTitle,tvCategory,tvAgeLevel,tvSkillLevel,tvClassSize,tvDate,tvTime;
+            ImageButton btnMessage,btnSetClass;
+        }
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            Holder mainholder = null;
+            if(convertView == null) {
+                Holder holder=new Holder();
+                LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+                convertView = inflater.inflate(R.layout.list_request_class, parent, false);
+
+                holder.tvRequestBy=(TextView) convertView.findViewById(R.id.request_requestedBy);
+                holder.tvTitle=(TextView) convertView.findViewById(R.id.request_title);
+                holder.tvCategory=(TextView) convertView.findViewById(R.id.request_category);
+                holder.tvAgeLevel=(TextView) convertView.findViewById(R.id.request_ageLevel);
+                holder.tvSkillLevel=(TextView) convertView.findViewById(R.id.request_skillLevel);
+                holder.tvClassSize=(TextView) convertView.findViewById(R.id.request_classSize);
+                holder.tvDate=(TextView) convertView.findViewById(R.id.request_date);
+                holder.tvTime=(TextView) convertView.findViewById(R.id.request_time);
+                holder.btnMessage=(ImageButton) convertView.findViewById(R.id.btn_request_message);
+                holder.btnSetClass=(ImageButton) convertView.findViewById(R.id.btn_request_setclass);
+
+                holder.tvRequestBy.setText(requestby.get(position));
+                holder.tvTitle.setText(title.get(position));
+                holder.tvCategory.setText(category.get(position));
+                holder.tvAgeLevel.setText(ageLevel.get(position));
+                holder.tvSkillLevel.setText(skillLevel.get(position));
+                holder.tvClassSize.setText(classSize.get(position));
+                holder.tvDate.setText(date.get(position));
+                holder.tvTime.setText(time.get(position));
+
+                convertView.setTag(holder);
+            }
+            mainholder = (Holder) convertView.getTag();
+            mainholder.btnMessage.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext(), ChatActivity.class);
+                    i.putExtra("tujuan",requestby.get(position));
+                    startActivity(i);
+                }
+            });
+            mainholder.btnSetClass.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext(), SetClass.class);
+                    Bundle mBundle = new Bundle();
+                    mBundle.putString("age_level", ageLevel.get(position));
+                    mBundle.putString("category", category.get(position));
+                    mBundle.putString("title", title.get(position));
+                    mBundle.putString("skill_level", skillLevel.get(position));
+                    mBundle.putString("date", date.get(position));
+                    mBundle.putString("time", time.get(position));
+                    mBundle.putString("class_size", classSize.get(position));
+                    mBundle.putString("pageSource", "RequestClass");
+                    i.putExtras(mBundle);
+                    startActivity(i);
+                }
+            });
+
+            return convertView;
+        }
     }
 }

@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:text="Thank you, we will inform the student"/>
         <Button
             android:id="@+id/btnRejectRequest"

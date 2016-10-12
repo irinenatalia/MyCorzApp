@@ -88,6 +88,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_group_category, null);
+
         }
 
         ((ImageView) convertView.findViewById(R.id.imageGroupCategory)).setImageResource(isExpanded?R.drawable.icon_update_skill:R.drawable.icon_update_skill_reverse);

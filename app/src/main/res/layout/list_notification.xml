@@ -12,7 +12,7 @@
             android:id="@+id/profileNotif"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/jokowi"/>
+            android:src="@drawable/icon_default_avatar_upload"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

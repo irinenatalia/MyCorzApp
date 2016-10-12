@@ -18,12 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="27sp"
             android:text="Your class is done"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="15sp"
             android:text="What do you think about your student?"/>
         <de.hdodenhof.circleimageview.CircleImageView
@@ -34,13 +36,14 @@
             android:layout_gravity="center_horizontal"
             app:civ_border_color="#ffffff"
             app:civ_border_width="3dp"
-            android:src="@drawable/jokowi"/>
+            android:src="@drawable/icon_default_avatar_upload"/>
         <TextView
             android:id="@+id/completeRequestName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="27sp"
             android:text="Budi Raharjo"/>
         <LinearLayout

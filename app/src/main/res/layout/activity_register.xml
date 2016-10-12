@@ -55,17 +55,31 @@
                 android:textColorHint="@color/colorTextGreyItalic"
                 android:textColor="@color/colorTextGreyNormal"
                 android:hint="Email Address"/>
-            <EditText
-                android:id="@+id/registerPass"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:inputType="textPassword"
-                android:background="@drawable/edittext_underlined"
-                android:textStyle="italic"
-                android:textColorHint="@color/colorTextGreyItalic"
-                android:textColor="@color/colorTextGreyNormal"
-                android:hint="Password"/>
+                android:layout_marginTop="10dp">
+                <EditText
+                    android:id="@+id/registerPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittext_underlined"
+                    android:textStyle="italic"
+                    android:textColorHint="@color/colorTextGreyItalic"
+                    android:textColor="@color/colorTextGreyNormal"
+                    android:hint="Password"/>
+                <ImageView
+                    android:id="@+id/registerViewPassword"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:src="@drawable/eye"
+                    android:adjustViewBounds="true"/>
+            </RelativeLayout>
+
             <ImageButton
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"

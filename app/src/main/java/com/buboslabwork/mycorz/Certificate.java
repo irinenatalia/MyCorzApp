@@ -10,9 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -111,33 +114,32 @@ public class Certificate extends AppCompatActivity {
 
         }
         lvCertificate =(ListView) findViewById(R.id.listCertificate);
-        lvCertificate.setAdapter(new ListCertificate(this, alSkill,alCertificate,alYearCertificate));
-        lvCertificate.setItemsCanFocus(true);
+        lvCertificate.setAdapter(new ListCertificate(Certificate.this, alSkill,alCertificate,alYearCertificate));
         // Click event for single list row
         lvCertificate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(Certificate.this, "clicked", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), AddCertificate.class);
-                i.putExtra("category",alSkill.get(position));
-                startActivityForResult(i, ADD_CERTIFICATE_VALUE);
+
             }
         });
 
         ImageButton btnBack = (ImageButton)findViewById(R.id.btnBackCert);
         btnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Certificate.this.finish();
+                //Certificate.this.finish();
+                Intent i = new Intent(getApplicationContext(), Profile.class);
+                startActivity(i);
             }
         });
         ImageButton btnAdd = (ImageButton)findViewById(R.id.btnAddCert);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), AddCertificate.class);
-                startActivityForResult(i, ADD_CERTIFICATE_VALUE);
+                startActivity(i);
             }
         });
+        /*
         ImageButton btnSave = (ImageButton)findViewById(R.id.btnSaveCert);
         btnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -169,6 +171,7 @@ public class Certificate extends AppCompatActivity {
                 }
             }
         });
+        */
         ImageButton btnHistory = (ImageButton)findViewById(R.id.btnUpdateCertHistory);
         btnHistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -229,6 +232,7 @@ public class Certificate extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        /*
         if (requestCode == ADD_CERTIFICATE_VALUE && resultCode == SetClass.RESULT_OK) {
             tempSkill = data.getStringExtra("skill");
             tempCertificate = data.getStringExtra("certificate");
@@ -266,8 +270,8 @@ public class Certificate extends AppCompatActivity {
 
                 ((BaseAdapter) lvCertificate.getAdapter()).notifyDataSetChanged();
             }
-        }
-        else if (requestCode == UPDATE_CERTIFICATE_VALUE && resultCode == SetClass.RESULT_OK) {
+        }*/
+        if (requestCode == UPDATE_CERTIFICATE_VALUE && resultCode == SetClass.RESULT_OK) {
             tempSkill = data.getStringExtra("skill");
             tempCertificate = data.getStringExtra("certificate");
             tempYearCertificate = data.getStringExtra("yearCertificate");
@@ -394,120 +398,69 @@ public class Certificate extends AppCompatActivity {
         }
     }
 
-    //save certificate
-    private class AsyncSave extends AsyncTask<String, String, String>
-    {
-        ProgressDialog pdLoading = new ProgressDialog(Certificate.this);
-        HttpURLConnection conn;
-        URL url = null;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tSaving...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
-
+    public class ListCertificate extends BaseAdapter {
+        Context context;
+        ArrayList<String> skill,certificate,yearCertificate;
+        private LayoutInflater inflater=null;
+        public ListCertificate(Context activity, ArrayList<String> skill, ArrayList<String> certificate, ArrayList<String> yearCertificate) {
+            // TODO Auto-generated constructor stub
+            this.skill = skill;
+            this.certificate = certificate;
+            this.yearCertificate = yearCertificate;
+            context=activity;
         }
         @Override
-        protected String doInBackground(String... params) {
-            try {
-                // Enter URL address where your php file resides
-                url = new URL("http://vidcom.click/admin/android/saveCertificate.php");
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return skill.size();
+        }
 
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return "exception";
-            }
-            try {
-                String test = "";
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection)url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                conn.setRequestMethod("POST");
+        @Override
+        public Object getItem(int position) {
+            // TODO Auto-generated method stub
+            return position;
+        }
 
-                // setDoInput and setDoOutput method depict handling of both send and receive
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                conn.setRequestProperty("X-Requested-With", "XMLHttpRequest");
-                conn.connect();
+        @Override
+        public long getItemId(int position) {
+            // TODO Auto-generated method stub
+            return position;
+        }
 
-                Log.v("savecertificate", "appending json string...");
-                Log.v("savecertificate", params[0]);
+        public class Holder
+        {
+            TextView tvSkill,tvCertificate,tvYearCertificate;
+            ImageButton btnUpdate;
+        }
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            Holder mainholder = null;
+            if(convertView == null) {
+                Holder holder = new Holder();
+                LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+                convertView = inflater.inflate(R.layout.list_profile_certificate, parent, false);
+                holder.tvSkill = (TextView) convertView.findViewById(R.id.listCertSkill);
+                holder.tvCertificate = (TextView) convertView.findViewById(R.id.listCertTitle);
+                holder.tvYearCertificate = (TextView) convertView.findViewById(R.id.listCertYear);
 
-                // Append parameters to URL
-                Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("category", test);
-                String query = builder.build().getEncodedQuery();
+                holder.tvSkill.setText(skill.get(position));
+                holder.tvCertificate.setText(certificate.get(position));
+                holder.tvYearCertificate.setText(yearCertificate.get(position));
 
-                // Send POST output.
-                DataOutputStream printout = new DataOutputStream(conn.getOutputStream ());
-                //printout.writeBytes(URLEncoder.encode(params[0],"UTF-8"));
-                printout.writeBytes(params[0]);
-                printout.flush ();
-                printout.close ();
+                holder.btnUpdate = (ImageButton) convertView.findViewById(R.id.listCertUpdate);
 
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return "exception";
+                convertView.setTag(holder);
             }
 
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                // Check if successful connection made
-                if (response_code == HttpURLConnection.HTTP_OK) {
-
-                    // Read data sent from server
-                    InputStream input = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                    StringBuilder result = new StringBuilder();
-                    String line;
-
-                    while ((line = reader.readLine()) != null) {
-                        result.append(line);
-                    }
-
-                    // Pass data to onPostExecute method
-                    return(result.toString());
-
-                }else{
-                    return("unsuccessful");
+            mainholder = (Holder) convertView.getTag();
+            mainholder.btnUpdate.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext(), UpdateCertificate.class);
+                    i.putExtra("category",alSkill.get(position));
+                    startActivity(i);
                 }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "exception";
-            } finally {
-                conn.disconnect();
-            }
+            });
+            return convertView;
         }
-
-        @Override
-        protected void onPostExecute(String result) {
-            pdLoading.dismiss();
-
-            Log.v("savecertificate", result);
-            if(result.equalsIgnoreCase("true"))
-            {
-                Toast.makeText(Certificate.this, "Your certificate has been saved", Toast.LENGTH_LONG).show();
-                Certificate.this.finish();
-            }else if (result.equalsIgnoreCase("false")){
-                // If username and password does not match display a error message
-                Toast.makeText(Certificate.this, "Error when saving your data, please try again.", Toast.LENGTH_LONG).show();
-
-            } else if (result.equalsIgnoreCase("exception") || result.equalsIgnoreCase("unsuccessful")) {
-                Toast.makeText(Certificate.this, "Connection problem. Please try again", Toast.LENGTH_LONG).show();
-            }
-        }
-
     }
 }

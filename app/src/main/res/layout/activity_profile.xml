@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     android:background="#FFFFFF"
     tools:context="com.buboslabwork.mycorz.Profile">
 
@@ -39,7 +40,8 @@
         android:layout_below="@+id/titleBarSetClass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp">
+        android:layout_marginBottom="60dp"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,24 +106,44 @@
                 android:layout_marginTop="20dp"
                 android:paddingBottom="5dp"
                 android:hint="Edit Name"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:textSize="15sp"
                 android:textColor="@color/colorTextGreyNormal"
                 android:textColorHint="@color/colorTextGreyItalic"
                 android:textStyle="italic"
                 android:background="@drawable/edittext_underlined"/>
-            <EditText
-                android:id="@+id/profilePassword"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:paddingBottom="5dp"
-                android:hint="Edit Password"
-                android:inputType="textPassword"
-                android:textSize="15sp"
-                android:textColor="@color/colorTextGreyNormal"
-                android:textColorHint="@color/colorTextGreyItalic"
-                android:textStyle="italic"
-                android:background="@drawable/edittext_underlined"/>
+                android:layout_marginTop="20dp">
+                <EditText
+                    android:id="@+id/profilePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:hint="Edit Password"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:inputType="textPassword"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorTextGreyNormal"
+                    android:textColorHint="@color/colorTextGreyItalic"
+                    android:textStyle="italic"
+                    android:background="@drawable/edittext_underlined"/>
+                <ImageView
+                    android:id="@+id/profileViewPassword"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="-10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:src="@drawable/eye"
+                    android:adjustViewBounds="true"/>
+            </RelativeLayout>
+
             <EditText
                 android:id="@+id/profileBirthDate"
                 android:layout_width="match_parent"
@@ -136,19 +158,34 @@
                 android:textColorHint="@color/colorTextGreyItalic"
                 android:textStyle="italic"
                 android:background="@drawable/edittext_underlined"/>
-            <EditText
-                android:id="@+id/profileAddress"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:paddingBottom="5dp"
-                android:focusableInTouchMode="true"
-                android:hint="Edit Address"
-                android:textSize="15sp"
-                android:textColor="@color/colorTextGreyNormal"
-                android:textColorHint="@color/colorTextGreyItalic"
-                android:textStyle="italic"
-                android:background="@drawable/edittext_underlined"/>
+                android:layout_marginTop="20dp">
+                <EditText
+                    android:id="@+id/profileAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:focusableInTouchMode="true"
+                    android:hint="Edit Address"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorTextGreyNormal"
+                    android:textColorHint="@color/colorTextGreyItalic"
+                    android:textStyle="italic"
+                    android:background="@drawable/edittext_underlined"/>
+                <TextView
+                    android:id="@+id/profileHintAddress"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="textEnd"
+                    android:text="Address based on ID Card"
+                    android:textSize="11sp"/>
+            </RelativeLayout>
+
 
             <EditText
                 android:id="@+id/profileSummary"
@@ -231,6 +268,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="NOTIFICATION"/>
             <TextView
@@ -239,6 +277,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textSize="10sp"
+                android:textColor="#ffffff"
                 android:text="HISTORY"/>
             <TextView
                 android:layout_width="0dp"
@@ -246,6 +285,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textSize="10sp"
+                android:textColor="#ffffff"
                 android:text="PROFILE"/>
             <TextView
                 android:layout_width="0dp"
@@ -253,6 +293,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textSize="10sp"
+                android:textColor="#ffffff"
                 android:text="SETTING"/>
         </LinearLayout>
     </LinearLayout>

@@ -45,4 +45,11 @@
             android:popupBackground="@color/colorGreenLight"
             android:hint="Search"/>
     </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progressBarSearch"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/progress_bar_tosca"/>
 </RelativeLayout>

@@ -28,6 +28,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -43,7 +44,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MentorList extends AppCompatActivity implements OnMapReadyCallback {
     private SlidingUpPanelLayout slidingLayout;
     ListView lvMentor;
-    ArrayList<String> profilePicture,category,username,completeName,rating,location,latitude,longitude;
+    ArrayList<String> profilePicture,category,username,completeName,rating,location,latitude,longitude,markerID;
 
     public JSONArray result = null;
     public String myJSONString, categoryTitle;
@@ -94,8 +95,18 @@ public class MentorList extends AppCompatActivity implements OnMapReadyCallback 
         location = new ArrayList<String>();
         latitude = new ArrayList<String>();
         longitude = new ArrayList<String>();
+        markerID = new ArrayList<String>();
 
-        // Parse JSON data to Listview
+        if(googleMap != null) {
+            googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker arg0) {
+                    //if(arg0.getTitle().equals("MyHome")) // if marker source is clicked
+                    Toast.makeText(MentorList.this, "clicked " + arg0.getId(), Toast.LENGTH_SHORT).show();// display toast
+                    return true;
+                }
+            });
+        }
 
         slidingLayout = (SlidingUpPanelLayout)findViewById(R.id.sliding_layout);
 
@@ -219,7 +230,18 @@ public class MentorList extends AppCompatActivity implements OnMapReadyCallback 
                     Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
                     options.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
                     options.position(latLng);
-                    googleMap.addMarker(options);
+                    //googleMap.addMarker(options);
+                    Marker mkr = googleMap.addMarker(options);
+                    markerID.add(mkr.getId());
+
+                    googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker arg0) {
+                            //if(arg0.getTitle().equals("MyHome")) // if marker source is clicked
+                            Toast.makeText(MentorList.this, "clicked " + arg0.getId(), Toast.LENGTH_SHORT).show();// display toast
+                            return true;
+                        }
+                    });
 
                     if (flagZoomMap == true) {
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
@@ -246,5 +268,7 @@ public class MentorList extends AppCompatActivity implements OnMapReadyCallback 
 
         extractJSON();
         showData();
+
+
     }
 }

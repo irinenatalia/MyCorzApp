@@ -57,7 +57,9 @@
             android:id="@+id/lvNotification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/titleBarNotification">
+            android:layout_below="@+id/titleBarNotification"
+            android:scrollbars="none"
+            android:divider="@null">
 
         </ListView>
     </android.support.v4.widget.SwipeRefreshLayout>

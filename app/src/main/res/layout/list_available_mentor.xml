@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/jokowi"/>
+            android:src="@drawable/icon_default_avatar_upload"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -77,7 +77,7 @@
             android:stepSize="1.0"
             android:rating="0.0"
             android:clickable="false"
-            style="@style/foodRatingBar"
+            style="?android:attr/ratingBarStyleSmall"
             android:isIndicator="true"/>
     </LinearLayout>
     <View

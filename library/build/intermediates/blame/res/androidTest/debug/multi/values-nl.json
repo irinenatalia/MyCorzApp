@@ -1,30 +1,6 @@
 [
     {
-        "outputFile": "E:\\MyCorzApp\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-nl\\values-nl.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 79,
-                    "endOffset": 130
-                },
-                "from": {
-                    "file": "E:\\MyCorzApp\\library\\build\\intermediates\\bundles\\debug\\res\\values-nl\\values-nl.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 79,
-                        "endOffset": 130
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "F:\\Kerjaan\\Projects\\MyCorzApp\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-nl\\values-nl.xml",
+        "outputFile": "F:\\Kerjaan\\Projects\\MyCorzApp\\library\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-nl\\values-nl.xml",
         "map": [
             {
                 "to": {

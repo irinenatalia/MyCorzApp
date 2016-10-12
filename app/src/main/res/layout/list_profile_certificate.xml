@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:descendantFocusability="blocksDescendants"
     android:layout_marginBottom="15dp">
 
     <LinearLayout
@@ -13,7 +12,6 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
-        android:descendantFocusability="blocksDescendants"
         android:layout_below="@+id/listCertSkill"
         android:orientation="horizontal"
         android:background="@drawable/edittext_bg">
@@ -47,15 +45,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
             <ImageButton
+                android:id="@+id/listCertUpdate"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/icon_update_skill"
-                android:focusable="false"
-                android:clickable="false"
                 android:background="@null"
                 android:scaleType="centerInside"/>
             <TextView

@@ -32,11 +32,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
+                android:textColor="#ffffff"
                 android:text="Welcome, "/>
             <TextView
                 android:id="@+id/main_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:text="User"
@@ -46,7 +48,7 @@
                 android:id="@+id/mainProfileImage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/jokowi"/>
+                android:src="@drawable/icon_default_avatar_upload"/>
         </LinearLayout>
 
     </RelativeLayout>
@@ -174,6 +176,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textSize="10sp"
+                android:textColor="#ffffff"
                 android:text="NOTIFICATION"/>
             <TextView
                 android:id="@+id/tvMainHistory"
@@ -181,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="HISTORY"/>
             <TextView
@@ -189,6 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="PROFILE"/>
             <TextView
@@ -197,6 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="#ffffff"
                 android:textSize="10sp"
                 android:text="SETTING"/>
         </LinearLayout>

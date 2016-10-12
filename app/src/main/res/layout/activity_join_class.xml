@@ -253,7 +253,7 @@
                     android:layout_weight="1"
                     android:layout_marginBottom="5dp"
                     android:textSize="13sp"
-                    android:clickable="true"
+                    android:clickable="false"
                     android:text="Address 1"
                     android:textColor="@color/colorTextGreyNormal"/>
                 <ImageButton
@@ -261,6 +261,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginBottom="5dp"
+                    android:clickable="false"
                     android:scaleType="centerInside"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
@@ -271,6 +272,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:clickable="false"
                 android:paddingBottom="5dp"
                 android:background="@drawable/edittext_underlined_oldgreen"
                 android:textSize="13sp"
@@ -324,7 +326,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextGreyNormal"
-                    android:text="( prepared by yourself )"/>
+                    android:text="(prepared by yourself)"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -377,6 +379,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/rounded_tosca_fill"
+                android:textColor="#ffffff"
                 android:textAllCaps="false"
                 android:text="Check Out"/>
         </LinearLayout>

@@ -32,7 +32,8 @@
     <ScrollView
         android:layout_below="@+id/titleBarSetClass"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,6 +120,28 @@
                     android:lines="3"
                     android:hint="Class Description"
                     android:gravity="bottom"
+                    android:background="@drawable/edittext_underlined"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/keyboard"/>
+                <EditText
+                    android:id="@+id/setclass_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/colorTextGreyNormal"
+                    android:textColorHint="@color/colorTextGreyItalic"
+                    android:focusableInTouchMode="true"
+                    android:hint="Category Keyword"
+                    android:textSize="14sp"
                     android:background="@drawable/edittext_underlined"/>
             </LinearLayout>
             <LinearLayout
@@ -279,7 +302,7 @@
                     android:textColorHint="@color/colorTextGreyItalic"
                     android:textColor="@color/colorTextGreyNormal"
                     android:textSize="15sp"
-                    android:hint="Cost"
+                    android:hint="Cost Per Class"
                     android:inputType="number"
                     android:background="@drawable/edittext_underlined"/>
             </LinearLayout>

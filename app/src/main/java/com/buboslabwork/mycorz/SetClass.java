@@ -84,7 +84,8 @@ public class SetClass extends AppCompatActivity{
     private CalendarPickerView dialogView;
     String testDate;
     TimePickerDialog mTimePicker;
-    EditText editCategory,className,classDescription,setdate,time,location,locationDetail,cost,privateCost,additionalCost,additionalCostFor;
+    EditText editCategory,className,classDescription,editKeyword,setdate,time,location,locationDetail;
+    EditText cost,privateCost,additionalCost,additionalCostFor;
     ImageView uploadPic;
     AutoCompleteTextView category;
     public String returnedCategory2 = "";
@@ -110,7 +111,8 @@ public class SetClass extends AppCompatActivity{
 
     User user;
     String sClassID = "";
-    String sCategory,sTitle,sDescription,age,skill,date,sTime,sClassSize,sLocationDetail,sCost,sPrivateCost,sAdditionalCost,sLocation,sAdditionalCostFor,email;
+    String sCategory,sTitle,sDescription,sKeyword,age,skill,date,sTime,sClassSize,sLocationDetail;
+    String sCost,sPrivateCost,sAdditionalCost,sLocation,sAdditionalCostFor,email;
     String sClassPicture,pageSource;
 
     @Override
@@ -154,6 +156,7 @@ public class SetClass extends AppCompatActivity{
         });
         className = (EditText)findViewById(R.id.setclass_name);
         classDescription = (EditText)findViewById(R.id.setclass_description);
+        editKeyword = (EditText)findViewById(R.id.setclass_keyword);
         location = (EditText) findViewById(R.id.setclass_location);
         locationDetail = (EditText)findViewById(R.id.setclass_location_detail);
         setdate = (EditText) findViewById(R.id.setclass_date);
@@ -574,6 +577,7 @@ public class SetClass extends AppCompatActivity{
             }
         });
 
+        //SUBMIT CLASS TO DATABASE
         ImageButton imgBtnSave = (ImageButton)findViewById(R.id.setclass_imgButtonSave);
         imgBtnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -592,6 +596,11 @@ public class SetClass extends AppCompatActivity{
                     sCost = sCost.replace("Rp ", "");
                     sCost = sCost.replace(",", "");
 
+                    if(TextUtils.isEmpty(editKeyword.getText().toString())){
+                        sKeyword = "";
+                    }
+                    else
+                        sKeyword = editKeyword.getText().toString();
                     sLocation = returnedAddress;
                     if(TextUtils.isEmpty(locationDetail.getText().toString())){
                         sLocationDetail = "(empty)";
@@ -627,11 +636,13 @@ public class SetClass extends AppCompatActivity{
 
                     new SetClass.AsyncLogin().execute(returnedCategory,className.getText().toString(),classDescription.getText().toString(),
                             age,skill,date,time.getText().toString(),sClassSize,sCost,
-                            sPrivateCost,sAdditionalCost,sAdditionalCostFor,sLocation,sLocationDetail,email,sClassPic,returnedLat,returnedLong,updateClassFlag.toString(),sClassID);
+                            sPrivateCost,sAdditionalCost,sAdditionalCostFor,sLocation,sLocationDetail,email,sClassPic,
+                            returnedLat,returnedLong,updateClassFlag.toString(),sClassID,sKeyword);
 
                 }
             }
         });
+        //SUBMIT CLASS TO DATABASE
         Button btnSave = (Button)findViewById(R.id.setclass_btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -648,6 +659,12 @@ public class SetClass extends AppCompatActivity{
                     sCost = cost.getText().toString();
                     sCost = sCost.replace("Rp ", "");
                     sCost = sCost.replace(",", "");
+
+                    if(TextUtils.isEmpty(editKeyword.getText().toString())){
+                        sKeyword = "";
+                    }
+                    else
+                        sKeyword = editKeyword.getText().toString();
                     sLocation = returnedAddress;
                     if(TextUtils.isEmpty(locationDetail.getText().toString())){
                         sLocationDetail = "(empty)";
@@ -683,7 +700,8 @@ public class SetClass extends AppCompatActivity{
 
                     new SetClass.AsyncLogin().execute(returnedCategory,className.getText().toString(),classDescription.getText().toString(),
                             age,skill,date,time.getText().toString(),sClassSize,sCost,
-                            sPrivateCost,sAdditionalCost,sAdditionalCostFor,sLocation,sLocationDetail,email,sClassPic,returnedLat,returnedLong,updateClassFlag.toString(),sClassID);
+                            sPrivateCost,sAdditionalCost,sAdditionalCostFor,sLocation,sLocationDetail,email,sClassPic,
+                            returnedLat,returnedLong,updateClassFlag.toString(),sClassID,sKeyword);
 
                 }
 
@@ -868,7 +886,8 @@ public class SetClass extends AppCompatActivity{
                         .appendQueryParameter("latitude", params[16])
                         .appendQueryParameter("longitude", params[17])
                         .appendQueryParameter("updateFlag", params[18])
-                        .appendQueryParameter("classID", params[19]);
+                        .appendQueryParameter("classID", params[19])
+                        .appendQueryParameter("keyword", params[20]);
                 String query = builder.build().getEncodedQuery();
 
                 // Open connection for sending data

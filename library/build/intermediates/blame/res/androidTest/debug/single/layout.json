@@ -1,13 +1,5 @@
 [
     {
-        "merged": "E:\\MyCorzApp\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\month.xml",
-        "source": "E:\\MyCorzApp\\library\\build\\intermediates\\bundles\\debug\\res\\layout\\month.xml"
-    },
-    {
-        "merged": "E:\\MyCorzApp\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\week.xml",
-        "source": "E:\\MyCorzApp\\library\\build\\intermediates\\bundles\\debug\\res\\layout\\week.xml"
-    },
-    {
         "merged": "F:\\Kerjaan\\Projects\\MyCorzApp\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\month.xml",
         "source": "F:\\Kerjaan\\Projects\\MyCorzApp\\library\\build\\intermediates\\bundles\\debug\\res\\layout\\month.xml"
     },

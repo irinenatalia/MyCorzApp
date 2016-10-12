@@ -16,6 +16,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
@@ -51,8 +53,12 @@ public class Profile extends AppCompatActivity implements PicModeSelectDialogFra
     private Button mBtnUpdatePic;
     private ImageView mImageView;
     private CardView mCardView;
+    TextView hintAddress;
     EditText name,password,birthDate,address,summary;
     String sProfile,sName,sPassword,sBirthDate,sAddress,sSummary,email,loginMethod;
+    ImageView viewPassword;
+    Boolean isChecked = false;
+    Boolean isAddressChecked = false;
 
     User user;
     public static final int CONNECTION_TIMEOUT=10000;
@@ -82,6 +88,8 @@ public class Profile extends AppCompatActivity implements PicModeSelectDialogFra
         summary = (EditText)findViewById(R.id.profileSummary);
         mImageView = (ImageView) findViewById(R.id.iv_user_pic);
         mCardView = (CardView) findViewById(R.id.cv_image_container);
+        viewPassword = (ImageView) findViewById(R.id.profileViewPassword);
+        hintAddress = (TextView) findViewById(R.id.profileHintAddress);
 
         if(user!=null){
             email = user.email;
@@ -124,6 +132,36 @@ public class Profile extends AppCompatActivity implements PicModeSelectDialogFra
         */
         checkPermissions();
 
+        viewPassword.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (isChecked == false) {
+                    // show password
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    viewPassword.setImageResource(R.drawable.eye);
+                    isChecked = true;
+                } else {
+                    // hide password
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    viewPassword.setImageResource(R.drawable.hide_eye);
+                    isChecked = false;
+                }
+            }
+        });
+
+        address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isAddressChecked) {
+                    hintAddress.setText("");
+                    isAddressChecked = false;
+                }
+                else{
+                    hintAddress.setText("Address based on ID Card");
+                    isAddressChecked = true;
+                }
+            }
+        });
+
         birthDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +172,20 @@ public class Profile extends AppCompatActivity implements PicModeSelectDialogFra
         updateCert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                sName = name.getText().toString();
+                sPassword = password.getText().toString();
+                sBirthDate = birthDate.getText().toString();
+                sAddress = address.getText().toString();
+                sSummary = summary.getText().toString(); */
                 Intent i = new Intent(getApplicationContext(), Certificate.class);
+                /*
+                i.putExtra("name", sName);
+                i.putExtra("password", sPassword);
+                i.putExtra("birthdate", sBirthDate);
+                i.putExtra("address", sAddress);
+                i.putExtra("summary", sSummary);
+                */
                 startActivity(i);
             }
         });

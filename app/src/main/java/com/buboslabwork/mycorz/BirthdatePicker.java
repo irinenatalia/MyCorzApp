@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,6 +33,9 @@ public class BirthdatePicker extends DialogFragment
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the date chosen by the user
         EditText birthdate = (EditText)getActivity().findViewById(R.id.profileBirthDate);
-        birthdate.setText(view.getYear()+"-"+view.getMonth()+"-"+view.getDayOfMonth());
+        String months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        Integer iMonth = view.getMonth();
+        Log.v("getmonth", iMonth.toString());
+        birthdate.setText(view.getDayOfMonth()+" "+months[iMonth]+" "+view.getYear());
     }
 }

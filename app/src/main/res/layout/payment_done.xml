@@ -25,12 +25,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:textSize="25sp"
             android:textAlignment="center"
             android:text="Thank you for your payment"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:textSize="17sp"
             android:textAlignment="center"
             android:text="We will confirm your payment."/>
